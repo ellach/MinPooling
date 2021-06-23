@@ -20,7 +20,4 @@ class MinPooling2d(nn.Module):
             min_values = torch.tensor(
                 [[torch.min(item) for j, item in enumerate(row)] for i, row in enumerate(off)])
             output_holder.append(min_values)
-        output = torch.zeros((image.shape[0], image.shape[1], len(output_holder[0]), len(output_holder[0])))
-        for i, item in enumerate(output_holder):
-            output[0][i] = item
-        return output
+        return [item for item in output_holder]
